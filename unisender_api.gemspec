@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = UnisenderApi::VERSION
   spec.authors       = ["t0pep0"]
   spec.email         = ["t0pep0.gentoo@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = "Unisender api library"
+  spec.summary       = "unisender api library"
+  spec.homepage      = "https://github.com/t0pep0/unisender_api"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
