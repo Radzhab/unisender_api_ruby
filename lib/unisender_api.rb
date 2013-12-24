@@ -1,34 +1,33 @@
 require "unisender_api/version"
+require "unisender_api/api_call"
+require "unisender_api/extends"
+require "unisender_api/lists"
+require "unisender_api/message"
+require "unisender_api/partners"
+require "unisender_api/statistics"
+
 
 module Unisender
- 
-  
-  class Api
-    attr_accessor :api_key, :test, :url
+
+  class API
+    
+    attr_accessor :api,
+    @@lists = nil
+    @@messages = nil
+    @@statistics = nil
+    @@extends = nil
+    @@partners = nil
     
     def initialize(api_key, locale = 'en', test = false)
-      self.api_key = api_key
-      self.test = test
-      self.url = "http://api.unisender.com/#{self.locale}/api/"
+      self.api = ApiCall.new(api_key, locale, test)
+      @@lists = Lists.new(self.api)
+      @@messages = Messages.new(self.api)
+      @@statistics = Statistics.new(self.api)
+      @@extends = Extends.new(self.api)
+      @@partners = Partners.new(self.api)
     end
 
-
-    def api_call(method, params)
-      url = self.url + method
-      params.merge!(:test_mode => '1') if self.test
-      params.merge!(:api_key => self.api_key)
-      result = JSON.parse(self.post(url, params))
-      return result
-    end
-    
-    def post(url, param)
-       uri = URI.parse(url)
-       https = Net::HTTP.new(uri.host, uri.port)
-       https.use_ssl = true
-       params = Addressable::URI.new
-       params.query_values = param
-       https.post(uri.path, params.query).body
-    end
-
- end
+  end
+  
+  
 end
