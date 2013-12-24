@@ -5,7 +5,7 @@ class Extends
         self.api = api
     end
 
-    def getFielda
+    def getFields
         self.api.api_call('getFields', {})
     end
 

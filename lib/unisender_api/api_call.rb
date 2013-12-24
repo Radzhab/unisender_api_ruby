@@ -1,3 +1,6 @@
+require 'json'
+require 'net/http'
+require 'addressable/uri'
 class ApiCall
     attr_accessor :api_key, :test, :url
     
@@ -50,11 +53,10 @@ class ApiCall
     
     def post(url, param)
        uri = URI.parse(url)
-       https = Net::HTTP.new(uri.host, uri.port)
-       https.use_ssl = true
+       http = Net::HTTP.new(uri.host, uri.port)
        params = Addressable::URI.new
        params.query_values = param
-       https.post(uri.path, params.query).body
+       http.post(uri.path, params.query).body
     end
 
  end

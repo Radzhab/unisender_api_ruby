@@ -6,7 +6,7 @@ class Lists
   end
 
   def getLists
-    self.api.api_call('getLists')
+    self.api.api_call('getLists', {})
   end
 
   def createList(title, before_subscribe_url = '', after_subscribe_url = '')
@@ -23,7 +23,7 @@ class Lists
     param.merge!(self.api.gen_hash(title, 'title'))
     param.merge!(self.api.gen_hash(before_subscirbe_url, 'before_subscribe_url')) if before_subscribe_url != ''
     param.merge!(self.api.gen_hash(after_subscribe_url, 'after_subscribe_url')) if after_subscribe_url != ''
-    self.api.api_call('updateList')
+    self.api.api_call('updateList', param)
   end
 
   def deleteList(list_id)
