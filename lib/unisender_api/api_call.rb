@@ -27,8 +27,10 @@ class ApiCall
       case param
       when Time
         hash.merge!("#{label}" => param.strftime("%F %H:%M"))
-      when Boolean
-        hash.merge!("#{label}" => param.to_s)
+      when TrueClass 
+        hash.merge!("#{label}" => '1')
+      when FalseClass
+        hash.merge!("#{label}" => '0')
       when String
         hash.merge!("#{label}" => param.to_s)
       when Fixnum
