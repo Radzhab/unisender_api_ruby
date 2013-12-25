@@ -5,13 +5,13 @@ class Messages
       self.api = api
     end
 
-    def createEmailMessage(sender_name, sender_email, subject, body, list_id, text_body = '', generate_text = 0, tag = '', attachments = {}, lang = 'en', series_day = '', series_time = '', wrap_type = 'skip', caregories = '')
+    def createEmailMessage(sender_name, sender_email, subject, body, list_id, text_body = '', generate_text = 0, tag = '', attachments = {}, lang = 'en', series_day = '', series_time = '', wrap_type = 'skip', categories = '')
       param = Hash.new
       param.merge!(self.api.gen_hash(sender_name, 'sender_name'))
       param.merge!(self.api.gen_hash(sender_email, 'sender_email'))
       param.merge!(self.api.gen_hash(subject, 'subject'))
       param.merge!(self.api.gen_hash(body, 'body'))
-      param.merge!(self.api.gen_hash(list_id, 'list-id'))
+      param.merge!(self.api.gen_hash(list_id, 'list_id'))
       param.merge!(self.api.gen_hash(text_body, 'text_body')) if text_body != ''
       param.merge!(self.api.gen_hash(generate_text, 'generate_text'))
       param.merge!(self.api.gen_hash(tag, 'tag')) if tag != ''
@@ -50,7 +50,7 @@ class Messages
       param.merge!(self.api.gen_hash(defer, 'defer'))
       param.merge!(self.api.gen_hash(track_ga, 'track_ga.to_s'))
       param.merge!(self.api.gen_hash(payment_limit, 'payment_limit'))
-      param.merge!(self.api.gen_hash(payment_currency, 'payment_currency')) if payment_currenct != ''
+      param.merge!(self.api.gen_hash(payment_currency, 'payment_currency')) if payment_currency != ''
       param.merge!(self.api.gen_hash(ga_medium, 'ga_medium')) if ga_medium != ''
       param.merge!(self.api.gen_hash(ga_source, 'ga_source')) if ga_source != ''
       param.merge!(self.api.gen_hash(ga_campaign, 'ga_campaign')) if ga_campaign != ''
